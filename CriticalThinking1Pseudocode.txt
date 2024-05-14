@@ -1,0 +1,31 @@
+# Part 1
+Function add(number1, number2):
+    1. Convert number1 to float
+    2. Convert number2 to float
+    3. Return the sum of number1 and number2 as a float
+
+Function subtract(number1, number2):
+    1. Convert number1 to float
+    2. Convert number2 to float
+    3. Return the result of subtracting number2 from number1 as a float
+
+# Part 2
+Function multiply(number1, number2):
+    1. Convert number1 to float
+    2. Convert number2 to float
+    3. Return the product of number1 and number2 as a float
+
+Function divide(number1, number2):
+    1. Convert number1 to float
+    2. Convert number2 to float
+    3. Return the result of dividing number1 by number2 as a float
+
+# Take user input
+num1 = Get input from the user for the first number
+num2 = Get input from the user for the second number
+
+# Print results
+Print "The result of num1 plus num2 equals " concatenated with the result of the add function with arguments num1 and num2, converted to a string
+Print "The result of num1 minus num2 equals " concatenated with the result of the subtract function with arguments num1 and num2, converted to a string
+Print "The result of num1 times num2 equals " concatenated with the result of the multiply function with arguments num1 and num2, converted to a string
+Print "The result of num1 divided by num2 equals " concatenated with the result of the divide function with arguments num1 and num2, converted to a string
