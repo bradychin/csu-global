@@ -6,6 +6,6 @@ def main():
     # Print results
     print(f"\n{num1} plus {num2} equals {float(num1) + float(num2)}")
     print(f"{num1} minus {num2} equals {float(num1) - float(num2)}\n")
-
+    
 if __name__ == "__main__":
     main()
