@@ -1,13 +1,20 @@
 def main():
     time_now = input('\nEnter the current time (24hr): ')
     wait = input('Enter how many hours to wait for the alarm: ')
-    alarm_time = calculate_time(time_now, wait)
+    alarm_time = calculate_alarm_time(int(time_now), int(wait))
 
     print(f'\nYour alarm will ring at {alarm_time}:00.\n')
 
-def calculate_time(current_time, duration):
-    parse = divmod(int(duration), 12)
-    return int(current_time) + parse[1]
+def calculate_alarm_time(time, duration):
+    while True:
+        if duration >= 12:
+            duration -= 12
+            time += 12
+            if time >= 24:
+                time -= 24
+        else:
+            time += duration
+            return time
 
 if __name__ == '__main__':
     main()
