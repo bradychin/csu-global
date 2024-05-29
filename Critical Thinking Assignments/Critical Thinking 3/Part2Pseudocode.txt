@@ -1,0 +1,54 @@
+1. Import the os module
+2. If the operating system name is 'nt' (Windows):
+    3. Clear the console using the 'cls' command
+4. Else (for Unix-like systems):
+    5. Clear the console using the 'clear' command
+
+Function get_current_time:
+    1. Run loop indefinitely.
+        2. Try to execute:
+            3. Prompt the user to enter the current time, convert to an integer, and store in variable time_now
+            4. If time_now is greater than 23 or less than 0:
+                5. Print 'The time must be between the hours 00 and 23'
+            6. Else:
+                7. Return time_now
+        8. If ValueError occurs:
+            9. Print 'Please enter a number.'
+
+Function get_wait_time:
+    1. Run loop indefinitely.
+        2. Try to execute:
+            3. Prompt the user to enter the wait time, convert to an integer, and store in variable wait
+            4. If wait less than 0:
+                5. Print 'You cannot set an alarm in the past.'
+            6. Else:
+                7. Return wait
+        8. If ValueError occurs:
+            9. Print 'Please enter a number.'
+
+Function calculate_alarm_time(time, duration):
+    1. Run loop indefinitely:
+        2. If duration is greater than or equal to 12:
+            3. Subract 12 from duration
+            4. Add 12 to time
+            5. If time is greater than or equal to 24:
+                6. Subract 24 from time
+        7. Else:
+            8. Add duration to time
+            9. If time is greater than or equal to 24:
+                10. Subtract 24 from time
+            11. If time is equal to 24:
+                12. Set time to 0
+            13. Return time
+
+Function Main:
+    1. Call the get_current_time function and store the result in current_time
+    2. Call the get_wait_time function and store the result in wait_time
+    3. Call the calculate_alarm_time with arguments current_time and wait_time and store the result in alarm_time
+
+    4. Print current_time
+    5. Print wait_time
+    6. Print alarm_time
+
+If this script is executed directly:
+    1. Call the main function
