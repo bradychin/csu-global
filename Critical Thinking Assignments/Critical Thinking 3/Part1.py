@@ -6,7 +6,7 @@ def main():
     while True:
         try:
             charge = Decimal(input('\nEnter the cost of the food: $'))
-            if charge < 0:
+            if charge <= 0:
                 print('Food isn\'t free!')
             else:
                 break
