@@ -44,9 +44,9 @@ def main():
     wait_time = get_wait_time()
     alarm_time = calculate_alarm_time(current_time, wait_time)
 
-    print(f'\nCurrent time: {current_time}:00')
+    print(f'\nCurrent time: {current_time}:00.')
     print(f'Alarm set {wait_time} hour(s) from now.')
-    print(f'Your alarm will ring at {alarm_time}:00.\n')
+    print(f'\nYour alarm will ring at {alarm_time}:00.\n')
 
 if __name__ == '__main__':
     main()
