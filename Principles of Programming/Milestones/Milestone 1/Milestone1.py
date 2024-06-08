@@ -16,7 +16,6 @@ class ItemToPurchase:
 def main():
     number_of_items = 2
     print(f'\nPlease enter {number_of_items} items.')
-
     items = []
     for i in range(number_of_items):
         name = str(input(f'\nPlease enter the item {i+1}: '))
