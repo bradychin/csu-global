@@ -16,6 +16,5 @@ def main():
 
     print(f'Points awarded: {points}')
 
-
 if __name__ == '__main__':
     main()
