@@ -6,9 +6,9 @@ def main():
         try: 
             number_of_years = int(input('Enter the number of years: '))
             if number_of_years <= 0:
-                 print('Please enter a valid number of years.')
+                print('Please enter a valid number of years.')
             else: 
-                 break
+                break
         except ValueError:
                 print('Please enter a number.')
 

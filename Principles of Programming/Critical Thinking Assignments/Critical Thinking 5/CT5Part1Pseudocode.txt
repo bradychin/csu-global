@@ -1,0 +1,45 @@
+1. Import the os module
+2. If the operating system name is 'nt' (Windows):
+    3. Clear the console using the 'cls' command
+4. Else (for Unix-like systems):
+    5. Clear the console using the 'clear' command
+
+Function Main:
+    1. Run loop indefinitely
+        2. Try to execute:
+            3. Prompt user to enter the number of years and store in variable number_of_years.
+            4. If the number_of_years is less than or equal to 0:
+                5. Print 'Please enter a valid number of years'.
+            6. Else:
+                7. break
+        8. If ValueError occurs:
+            9. Print 'Please enter a number.'
+    10. Define months of the year and store in variable months. 
+    11. Define the number of months and store in varable number_of_months. 
+    12. Create empty rainfall list named rainfall. 
+
+    13. Iterate through the years in number_of_years:
+        14. Print current year.
+        
+        15. Iterate through each month in the months list:
+            16. Run loop indefinitely:
+                17. Try to execute: 
+                    18. Prompt user to enter the inches of rainfall in current month and store in variable monthly_rainfall.
+                    19. If monthly_rainfall is less than 0:
+                        20. Print 'Please enter a valid amount of rainfall'.
+                    21. Else:
+                        22. break
+                23. If ValueError occurs:
+                    24. Print 'Please enter a number'.
+            25. Increment number_of_months.
+            26. Add monthly_rainfall into the rainfall list. 
+
+    27. Sum the values in the rainfall list and store in variable total_rainfall. 
+    28. Calculate the average rainfall over the entire period and store in variable average_rainfall.
+
+    29. Print number of months over entire period. 
+    30. Print total rainfall over entire period. 
+    31. Print average rainfall over entire period. 
+
+If this script is executed directly:
+    1. Call the main function

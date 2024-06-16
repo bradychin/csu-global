@@ -1,0 +1,32 @@
+1. Import the os module
+2. If the operating system name is 'nt' (Windows):
+    3. Clear the console using the 'cls' command
+4. Else (for Unix-like systems):
+    5. Clear the console using the 'clear' command
+
+Function main: 
+    1. Run loop indefinitely
+        2. Try to execute:
+            3. Prompt user to enter the number of books purchased and store in variable number_of_books_purchased.
+            4. If the number_of_books_purchased is less than to 0:
+                5. Print 'Please enter a valid number of years'.
+            6. Else:
+                7. break
+        8. If ValueError occurs:
+            9. Print 'Please enter a number'.
+    10. Define points as 0.
+
+    11. If number_of_books_purchased is greater than or equal to 2 and number_of_books_purchased is less than 4:
+        12. Increase point by 5.
+    13. If number_of_books_purchased is greater than or equal to 4 and number_of_books_purchased is less than 5:
+        14. Increase point by 15.
+    15. If number_of_books_purchased is greater than or equal to 5 and number_of_books_purchased is less than 8:
+        16. Increase point by 30.
+    17. If number_of_books_purchased is greater than or equal to 8:
+        18. Increase point by 60.
+    
+    19. Print the points awarded.
+
+If this script is executed directly:
+    1. Call the main function
+    
