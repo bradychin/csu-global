@@ -1,6 +1,5 @@
 import os
 os.system('cls' if os.name == 'nt' else 'clear')
-import inspect
 from inspect import signature, Parameter
 
 class ItemToPurchase:
@@ -73,16 +72,10 @@ class ShoppingCart:
         return '\n'.join(final_output)
 
 def has_default_parameters(a_class):
-    for name, method in inspect.getmembers(a_class, predicate=inspect.isfunction):
-        sig = signature(method)
-        if any(param.default != Parameter.empty for param in sig.parameters.values()):
-            return True
-
     if hasattr(a_class, '__init__'):
         sig = signature(a_class.__init__)
         if any(param.default != Parameter.empty for param in sig.parameters.values()):
             return True
-
     return False
     
 def print_menu(shopper):
@@ -143,6 +136,8 @@ def print_menu(shopper):
                         new_item = ItemToPurchase(new_item_name, new_price, new_quantity, new_description)
                         shopper.modify_item(new_item, shopper.cart_items[item])
                         break
+                    print('Item already has price, quantity, and description')
+                    break
             else:
                 print('Item not found in cart. Nothing modified.')
         elif choice == 'i':
