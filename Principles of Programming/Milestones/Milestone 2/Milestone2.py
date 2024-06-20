@@ -1,8 +1,9 @@
 import os
 os.system('cls' if os.name == 'nt' else 'clear')
+from inspect import signature, Parameter
 
 class ItemToPurchase:
-    def __init__(self, item_name='none', item_price=0, item_quantity=0, item_description='none'):
+    def __init__(self, item_name, item_price, item_quantity, item_description):
         self.item_name = item_name
         self.item_price = item_price
         self.item_quantity = item_quantity
@@ -70,6 +71,13 @@ class ShoppingCart:
             final_output.append(f'{self.cart_items[item].item_name}: {self.cart_items[item].item_description}')
         return '\n'.join(final_output)
 
+def has_default_parameters(a_class):
+    if hasattr(a_class, '__init__'):
+        sig = signature(a_class.__init__)
+        if any(param.default != Parameter.empty for param in sig.parameters.values()):
+            return True
+    return False
+    
 def print_menu(shopper):
     while True:
         print('\nMenu\n'
@@ -120,14 +128,17 @@ def print_menu(shopper):
             item_to_modify = str(input('What item would you like to modify? '))
             for item in range(len(shopper.cart_items)):
                 if item_to_modify == shopper.cart_items[item].item_name:
-                    new_item_name = str(input('Enter the new item name: '))
-                    new_price = float(input('Enter the new item price: '))
-                    new_quantity = float(input('How many do you want? '))
-                    new_description = str(input('Enter the new description: '))
-                    new_item = ItemToPurchase(new_item_name, new_price, new_quantity, new_description)
-                    shopper.modify_item(new_item, shopper.cart_items[item])
+                    if not has_default_parameters(shopper.cart_items[item]):
+                        new_item_name = str(input('Enter the new item name: '))
+                        new_price = float(input('Enter the new item price: '))
+                        new_quantity = float(input('How many do you want? '))
+                        new_description = str(input('Enter the new description: '))
+                        new_item = ItemToPurchase(new_item_name, new_price, new_quantity, new_description)
+                        shopper.modify_item(new_item, shopper.cart_items[item])
+                        break
+                    print('Item already has price, quantity, and description')
                     break
-            if all(item_to_modify != shopper.cart_items[item].item_name for item in range(len(shopper.cart_items))):
+            else:
                 print('Item not found in cart. Nothing modified.')
         elif choice == 'i':
             print('\nOUTPUT ITEMS\' DESCRIPTION')
@@ -139,9 +150,8 @@ def print_menu(shopper):
             print('\nThanks for shopping!\n')
             break
 
-
 def main():
-    shopper = ShoppingCart('Brady')
+    shopper = ShoppingCart()
     print_menu(shopper)
     
 if __name__ == '__main__':
