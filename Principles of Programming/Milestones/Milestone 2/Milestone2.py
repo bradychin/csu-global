@@ -23,20 +23,24 @@ class ShoppingCart:
     
     def add_item(self, item_to_puchase):
         self.cart_items.append(item_to_puchase)
+        print(f'\n{item_to_puchase.item_name} added to cart.')
 
     def remove_item(self, item_name):
         for item in range(len(self.cart_items)):
             if self.cart_items[item].item_name == item_name:
                 self.cart_items.remove(self.cart_items[item])
+                print(f'\n{item_name} removed from cart.')
                 break
-        if all(self.cart_items[item].item_name != item_name for item in range(len(self.cart_items))):
-            print('Item not found in cart. Nothing Removed')
+        else: 
+            print('\nItem not found in cart. Nothing Removed')
 
     def modify_item(self, new_item_to_purchase, item_to_change):
+        original_item = item_to_change.item_name
         item_to_change.item_name = new_item_to_purchase.item_name
         item_to_change.item_price = new_item_to_purchase.item_price
         item_to_change.item_quantity = new_item_to_purchase.item_quantity
         item_to_change.item_description = new_item_to_purchase.item_description
+        print(f'\nItem {original_item} changed to {new_item_to_purchase.item_name}')
 
     def get_num_items_in_cart(self):
         num_items = 0
@@ -71,6 +75,54 @@ class ShoppingCart:
             final_output.append(f'{self.cart_items[item].item_name}: {self.cart_items[item].item_description}')
         return '\n'.join(final_output)
 
+def enter_item_name(modified=None):
+    while True:
+        try:
+            item_to_add = str(input(f'\nPlease enter modified item: ' if modified else f'\nPlease enter the new item: '))
+            if not item_to_add.strip():
+                raise ValueError
+            else: 
+                break
+        except ValueError:
+            print('The item has to have a name!')
+    return item_to_add
+
+def enter_item_price(item_name):
+    while True:
+        try:
+            price = float(input(f'How much do(es) the {item_name} cost? $'))
+            if price <= 0:
+                print(f'{item_name} are not free!\n')
+            else:
+                break
+        except ValueError:
+            print('Please enter a number.\n')
+    return price
+
+def enter_item_quantity(item_name):
+    while True:
+        try: 
+            quantity = int(input('How many do you want? '))
+            if quantity <= 0:
+                print(f'You need to have at least 1 {item_name}.\n')
+            else:
+                break
+        except ValueError:
+            print('Please enter a number.\n')
+    return quantity
+
+def enter_item_description(item_name):
+    while True: 
+        try: 
+            description = str(input(f'Enter the {item_name} description: '))
+            if not description.strip():
+                raise ValueError
+            else:
+                break
+        except ValueError:
+            print('The item needs to have a description.\n')
+    return description
+
 def has_default_parameters(a_class):
     if hasattr(a_class, '__init__'):
         sig = signature(a_class.__init__)
@@ -99,47 +151,37 @@ def print_menu(shopper):
                 print('Please enter a menu item.')
         
         if choice == 'a':
-            item_to_add = str(input(f'\nPlease enter the item: '))
-            while True:
-                try:
-                    price = float(input(f'How much do(es) the {item_to_add} cost? $'))
-                    if price <= 0:
-                        print(f'{item_to_add} are not free!')
-                    else:
-                        break
-                except ValueError:
-                    print('Please enter a number')
-            while True:
-                try: 
-                    quantity = int(input('How many do you want? '))
-                    if quantity <= 0:
-                        print(f'You need to have at least 1 {item_to_add}')
-                    else:
-                        break
-                except ValueError:
-                    print('Please enter a number')
-            description = str(input('Enter item description: '))
+            item_to_add = enter_item_name()
+            price = enter_item_price(item_to_add)
+            quantity = enter_item_quantity(item_to_add)
+            description = enter_item_description(item_to_add)
             item_to_purchase = ItemToPurchase(item_to_add, price, quantity, description)
             shopper.add_item(item_to_purchase)
         elif choice == 'r':
-            item_to_remove = input('What item do you want to remove? ')
+            print('\nCart Items:')
+            for item in range(len(shopper.cart_items)):
+                print(f'{shopper.cart_items[item].item_name}')
+            item_to_remove = input('\nWhat item do you want to remove? ')
             shopper.remove_item(item_to_remove)
         elif choice == 'c':
-            item_to_modify = str(input('What item would you like to modify? '))
+            print('\nCart Items:')
+            for item in range(len(shopper.cart_items)):
+                print(f'{shopper.cart_items[item].item_name}')
+            item_to_modify = str(input('\nWhat item would you like to modify? '))
             for item in range(len(shopper.cart_items)):
                 if item_to_modify == shopper.cart_items[item].item_name:
                     if not has_default_parameters(shopper.cart_items[item]):
-                        new_item_name = str(input('Enter the new item name: '))
-                        new_price = float(input('Enter the new item price: '))
-                        new_quantity = float(input('How many do you want? '))
-                        new_description = str(input('Enter the new description: '))
+                        new_item_name = enter_item_name('modify')
+                        new_price = enter_item_price(new_item_name)
+                        new_quantity = enter_item_quantity(new_item_name)
+                        new_description = enter_item_description(new_item_name)
                         new_item = ItemToPurchase(new_item_name, new_price, new_quantity, new_description)
                         shopper.modify_item(new_item, shopper.cart_items[item])
                         break
-                    print('Item already has price, quantity, and description')
+                    print('\nItem already has price, quantity, and description')
                     break
             else:
-                print('Item not found in cart. Nothing modified.')
+                print('\nItem not found in cart. Nothing modified.')
         elif choice == 'i':
             print('\nOUTPUT ITEMS\' DESCRIPTION')
             print(shopper.print_descriptions())
@@ -151,7 +193,7 @@ def print_menu(shopper):
             break
 
 def main():
-    shopper = ShoppingCart()
+    shopper = ShoppingCart('Brady', 'June 23rd, 2024')
     print_menu(shopper)
     
 if __name__ == '__main__':
