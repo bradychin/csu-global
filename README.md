@@ -1,3 +1,5 @@
-## Principles of Programming
+# CSU Global Projects
+Respository for all CSU Global projects
 
-Repository for assignments and projects in course CSC500-1
+## Principles of Programming
+Assignments and projects for course CSC500-1
