@@ -193,7 +193,19 @@ def print_menu(shopper):
             break
 
 def main():
-    shopper = ShoppingCart('Brady', 'June 23rd, 2024')
+    while True: 
+        try: 
+            shopper_name = str(input(f'Please enter your name: '))
+            if not shopper_name.strip():
+                raise ValueError
+            else:
+                break
+        except ValueError:
+            print('You need to enter a name.\n')
+
+    shopper_date = str(input('What is the date? '))
+
+    shopper = ShoppingCart(shopper_name, shopper_date)
     print_menu(shopper)
     
 if __name__ == '__main__':
