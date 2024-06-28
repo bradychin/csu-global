@@ -16,10 +16,10 @@ class ItemToPurchase:
         return f'{self.item_name} {self.item_quantity} @ ${self.item_price:.2f} = ${self.total_item_price():.2f}'
 
 class ShoppingCart:
-    def __init__(self, customer_name="none", current_date="January 1, 2020", cart_items=[]):
+    def __init__(self, customer_name="none", current_date="January 1, 2020"):
         self.customer_name = customer_name
         self.current_date = current_date
-        self.cart_items = cart_items
+        self.cart_items = []
     
     def add_item(self, item_to_puchase):
         self.cart_items.append(item_to_puchase)
