@@ -1,39 +1,63 @@
 import os
 os.system('cls' if os.name == 'nt' else 'clear')
 
-def get_course_information(request, course_information):
-    for information in course_information:
-        if request == information['course']:
-            return (
-                f'\nCourse {request} information:'
-                f'\nRoom number: {information['Room Number']}'
-                f'\nInstructor: {information['Instructor']}'
-                f'\nMeeting time: {information['Meeting Time']}\n'
-            )
-                
-def main():
-    course_information = [
-        {'course': 'CSC101', 'Room Number': 3004, 'Instructor': 'Haynes', 'Meeting Time': '8:00am'},
-        {'course': 'CSC102', 'Room Number': 4501, 'Instructor': 'Alvarado', 'Meeting Time': '9:00am'},
-        {'course': 'CSC103', 'Room Number': 6755, 'Instructor': 'Rich', 'Meeting Time': '10:00am'},
-        {'course': 'NET110', 'Room Number': 1244, 'Instructor': 'Burke', 'Meeting Time': '11:00am'},
-        {'course': 'COM241', 'Room Number': 1411, 'Instructor': 'Lee', 'Meeting Time': '1:00pm'}
-    ]
+def check_if_vaild_course(request, dictionary):
+    for key in dictionary:
+        if request == key:
+            return True
+    return False
 
-    print('Available courses:')
-    for information in course_information:
-        print(f'- {information['course']}')
+def main():
+    room_number = {
+        'CSC101': 3004,
+        'CSC102': 4501,
+        'CSC103': 6755,
+        'NET100': 1244,
+        'COM241': 1411
+    }
+
+    instructors = {
+        'CSC101': 'Haynes',
+        'CSC102': 'Alvarado',
+        'CSC103': 'Rich',
+        'NET100': 'Burke',
+        'COM241': 'Lee'
+    }
+
+    meeting_times = {
+        'CSC101': '8:00 am',
+        'CSC102': '9:00 am',
+        'CSC103': '10:00 am',
+        'NET100': '11:00 am',
+        'COM241': '1:00 pm'
+    }
+
+    print('''Available courses: 
+    - CSC101
+    - CSC102
+    - CSC103
+    - NET100
+    - COM241
+          ''')
 
     while True:
         try: 
-            request = input(f'\nPlease enter a course number: ')
-            if get_course_information(request.upper(), course_information) == None:
-                raise KeyError
-            else:
-                print(get_course_information(request.upper(), course_information))
+            course_request = input('Please enter a course number: ').upper()
+            if check_if_vaild_course(course_request, room_number) == False:
+                raise KeyError('No room number found for this request.')
+            elif check_if_vaild_course(course_request, instructors) == False:
+                raise KeyError('No instructor found for this request.')
+            elif check_if_vaild_course(course_request, meeting_times) == False:
+                raise KeyError('No meeting time found for this request.')
+            else: 
                 break
-        except KeyError:
-            print('That is not a valid course code.')
+        except KeyError as error:
+            print(f'Error: {error}\n')
+
+    print(f'\nInformation for course {course_request}')
+    print(f'Room Number: {room_number[course_request]}')
+    print(f'Instructor: {instructors[course_request]}')
+    print(f'meeting_time: {meeting_times[course_request]}\n')
 
 if __name__ == '__main__':
     main()

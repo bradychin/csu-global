@@ -1,0 +1,40 @@
+1. Import the os module
+2. If the operating system name is 'nt' (Windows):
+    3. Clear the console using the 'cls' command
+4. Else (for Unix-like systems):
+    5. Clear the console using the 'clear' command
+
+Function check_if_vaild_course(request, dictionary):
+    1. Iterate through keys in dictionary
+        2. If the request matches the key:
+            3. Return True
+    4. Return False
+
+Function main:
+    1. Define room number dictionary and store in variable room_number.
+    2. Define instructor dictionary and store in variable instructors.
+    3. Define meeting times dictionary and store in variable meeting_times.
+
+    4. Print all available courses.
+
+    5. Run loop indefinitely:
+        6. Try to execute:
+            7. Prompt the user for a course number, convert to uppercase, and store in variable course_request. 
+            8. If check_if_vaild_course(course_request, room_number) is equal to False:
+                9. raise 'KeyError' with message 'No room number found for this request.'
+            10. elif check_if_vaild_course(course_request, instructors) is equal to False:
+                11. raise 'KeyError' with message 'No instructor found for this request.'
+            12. elif check_if_vaild_course(course_request, meeting_times) is equal to False:
+                13. raise 'KeyError' with message 'No meeting time found for this request.'
+            14. Else:
+                15. break
+        16. If KeyError occurs:
+            17. Print 'Error:' and the error message.
+    
+    18. Print "Information for course" followed by `course_request`
+    19. Print 'Room Number:' followed by `room_number[course_request]`
+    20. Print 'Instructor:' followed by `instructors[course_request]`
+    21. Print 'Meeting Time:' followed by `meeting_time[course_request]`
+
+If this script is executed directly:
+    1. Call the main function
