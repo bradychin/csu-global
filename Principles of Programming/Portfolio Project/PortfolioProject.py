@@ -52,12 +52,10 @@ class ShoppingCart:
         total_cost = 0
         for item in range(len(self.cart_items)):
             total_cost += self.cart_items[item].total_item_price()
-
         return total_cost
 
     def print_total(self):
         empty_output = 'SHOPPING CART IS EMPTY'
-
         total_output = []
         total_output.append(f'{self.customer_name}\'s Shopping Cart - {self.current_date}')
         total_output.append(f'Number of Items: {self.get_num_items_in_cart()}')
@@ -151,6 +149,7 @@ def print_menu(shopper):
                 print('Please enter a menu item.')
         
         if choice == 'a':
+            print('\nADD ITEM TO CART')
             item_to_add = enter_item_name()
             price = enter_item_price(item_to_add)
             quantity = enter_item_quantity(item_to_add)
@@ -158,12 +157,14 @@ def print_menu(shopper):
             item_to_purchase = ItemToPurchase(item_to_add, price, quantity, description)
             shopper.add_item(item_to_purchase)
         elif choice == 'r':
+            print('\nREMOVE ITEM FROM CART')
             print('\nCart Items:')
             for item in range(len(shopper.cart_items)):
                 print(f'{shopper.cart_items[item].item_name}')
             item_to_remove = input('\nWhat item do you want to remove? ')
             shopper.remove_item(item_to_remove)
         elif choice == 'c':
+            print('\nCHANGE ITEM QUANTITY')
             print('\nCart Items:')
             for item in range(len(shopper.cart_items)):
                 print(f'{shopper.cart_items[item].item_name}')
@@ -195,7 +196,7 @@ def print_menu(shopper):
 def main():
     while True: 
         try: 
-            shopper_name = str(input(f'Please enter your name: '))
+            shopper_name = str(input(f'Enter customer\'s name: '))
             if not shopper_name.strip():
                 raise ValueError
             else:
@@ -203,7 +204,10 @@ def main():
         except ValueError:
             print('You need to enter a name.\n')
 
-    shopper_date = str(input('What is the date? '))
+    shopper_date = str(input('Enter today\'s date: '))
+
+    print(f'\nCusotmer name: {shopper_name}')
+    print(f'Today\'s date: {shopper_date}')
 
     shopper = ShoppingCart(shopper_name, shopper_date)
     print_menu(shopper)

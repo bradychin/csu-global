@@ -1,0 +1,207 @@
+1. Import the required modules:
+2. Import the os module
+3. If the operating system name is 'nt' (Windows):
+    4. Clear the console using the 'cls' command
+5. Else (for Unix-like systems):
+    6. Clear the console using the 'clear' command
+7. Import signature, Parameter from inspect
+
+Define class ItemToPurchase:
+    1. Define function __init__ with parameters item_name, item_price, item_quantity, item_description:
+        2. Set self.item_name to item_name
+        3. Set self.item_price to item_price
+        4. Set self.item_quantity to item_quantity
+        5. Set self.item_description to item_description
+
+    6. Define function total_item_price:
+        7. Return self.item_price * self.item_quantity
+
+    8. Define function print_item_cost:
+        9. Return formatted string with item details and total price
+
+Define class ShoppingCart:
+    1. Define function __init__ with parameters customer_name="none", current_date="January 1, 2020":
+        2. Set self.customer_name to customer_name
+        3. Set self.current_date to current_date
+        4. Initialize self.cart_items as an empty list
+
+    5. Define function add_item with parameter item_to_purchase:
+            6. Append item_to_purchase to self.cart_items
+            7. Print formatted message with item_to_purchase.item_name
+
+    8. Define function remove_item with parameter item_name:
+        9. For each item in self.cart_items:
+            10. If item.item_name is equal to item_name:
+                11. Remove item from self.cart_items
+                12. Print formatted message with item_name
+                13. Break loop
+            14. Else:
+                15. Print 'Item not found in cart. Nothing Removed'
+
+    16. Define function modify_item with parameters new_item_to_purchase, item_to_change:
+        17. Set original_item to item_to_change.item_name
+        18. Update item_to_change attributes with new_item_to_purchase attributes
+        19. Print formatted message with original_item and new_item_to_purchase.item_name
+
+    20. Define function get_num_items_in_cart:
+        21. Initialize num_items to 0
+        22. For each item in self.cart_items:
+            23. Add item.item_quantity to num_items
+        24. Return num_items
+
+    25. Define function get_cost_of_cart:
+        26. Initialize total_cost to 0
+        27. For each item in self.cart_items:
+            28. Add item.total_item_price() to total_cost
+        29. Return total_cost
+
+    30. Define function print_total:
+        31. Initialize empty_output to 'SHOPPING CART IS EMPTY'
+        32. Initialize total_output as a list
+        33. Append formatted strings with self.customer_name and self.current_date to total_output
+        34. Append formatted string with number of items to total_output
+        35. For each item in self.cart_items:
+            36. Append item.print_item_cost() to total_output
+        37. Append formatted string with total cost to total_output
+        38. If self.cart_items is not empty, return joined total_output string, else return empty_output
+
+    39. Define function print_descriptions:
+        40. Initialize final_output as a list
+        41. Append formatted strings with self.customer_name and self.current_date to final_output
+        42. Append 'Item Descriptions' to final_output
+        43. For each item in self.cart_items:
+            44. Append formatted string with item.item_name and item.item_description to final_output
+        45. Return joined final_output string
+
+Define function enter_item_name with optional parameter modified=None:
+    1. Run loop indefinitely:
+        2. Try to execute:
+            3. If modified is not None, prompt for 'modified item', else prompt for 'new item', and store in item_to_add
+            4. If item_to_add is empty or only whitespace:
+                5. raise ValueError
+            6. Else:
+                7. Break loop
+        8. If ValueError exception occurs:
+            9. Print 'The item has to have a name!'
+    10. Return item_to_add
+
+Define function enter_item_price with parameter item_name:
+    1. Run loop indefinitely:
+        2. Try to execute:
+            3. Prompt for item price, convert to float, and store in price
+            4. If price is less than or equal to 0:
+                5. print 'Item is not free!'
+            6. Else:
+                7. Break loop
+        8. If ValueError exception occurs:
+            9. Print 'Please enter a number.'
+    10. Return price
+
+Define function enter_item_quantity with parameter item_name:
+    1. Run loop indefinitely:
+        2. Try to execute:
+            3. Prompt for item quantity, convert to int, and store in quantity
+            4. If quantity is less than or equal to 0: 
+                5. print 'You need at least 1 item.'
+            6. Else:
+                7. Break loop
+        8. If ValueError exception occurs:
+            9. Print 'Please enter a number.'
+    10. Return quantity
+
+Define function enter_item_description with parameter item_name:
+    1. Run loop indefinitely:
+        2. Try to execute:
+            3. Prompt for item description and store in description
+            3. If description is empty or only whitespace:
+                5. raise ValueError
+            6. Else:
+                7. Break loop
+        8. If ValueError exception occurs:
+            9. Print 'The item needs to have a description.'
+    10. Return description
+
+Define function has_default_parameters with parameter a_class:
+    1. If a_class has __init__ method:
+        2. Get signature of __init__
+        3. If any parameter in signature has a default value:
+            4. return True
+    5. Return False
+
+Define function print_menu with parameter shopper:
+    1. Run loop indefinitely:
+        2. Print menu options
+
+        3. Run loop indefinitely:
+            4. Try to execute:
+                5. Prompt for menu choice and store in choice
+                6. If choice is valid:
+                    7. Break loop
+                8. Else:
+                    9. Print 'Choose a valid menu item.'
+            10. If ValueError exception occurs:
+                11. Print 'Please enter a menu item.'
+
+        12. If choice is 'a':
+            13. Print 'ADD ITEM TO CART'
+            14. Call enter_item_name and store result in item_to_add
+            15. Call enter_item_price with item_to_add and store result in price
+            16. Call enter_item_quantity with item_to_add and store result in quantity
+            17. Call enter_item_description with item_to_add and store result in description
+            18. Create ItemToPurchase object item_to_purchase with item_to_add, price, quantity, description
+            19. Call shopper.add_item with item_to_purchase
+
+        20. Elif if choice is 'r':
+            19. Print 'REMOVE ITEM FROM CART'
+            20. Print cart items
+            21. Prompt for item to remove and store in item_to_remove
+            22. Call shopper.remove_item with item_to_remove
+
+        23. Elif if choice is 'c':
+            24. Print 'CHANGE ITEM QUANTITY'
+            25. Print cart items
+            26. Prompt for item to modify and store in item_to_modify
+            27. For each item in shopper.cart_items:
+                28. If item_to_modify matches item.item_name:
+                    29. If item does not have default parameters:
+                        30. Call enter_item_name with 'modify' and store result in new_item_name
+                        31. Call enter_item_price with new_item_name and store result in new_price
+                        32. Call enter_item_quantity with new_item_name and store result in new_quantity
+                        33. Call enter_item_description with new_item_name and store result in new_description
+                        34. Create ItemToPurchase object new_item with new_item_name, new_price, new_quantity, new_description
+                        35. Call shopper.modify_item with new_item, item
+                        36. Break loop
+                    37. Print 'Item already has price, quantity, and description'
+                    38. Break loop
+            39. Else:
+                40. Print 'Item not found in cart. Nothing modified.'
+
+        41. Elif if choice is 'i':
+            42. Print 'OUTPUT ITEMS' DESCRIPTION'
+            43. Print shopper.print_descriptions()
+
+        44. Elif if choice is 'o':
+            45. Print 'OUTPUT SHOPPING CART'
+            46. Print shopper.print_total()
+
+        47. Elif if choice is 'q':
+            48. Print 'Thanks for shopping!'
+            49. Break loop
+
+Define function main:
+    1. Run loop indefinitely:
+        2. Try to execute:
+            3. Prompt for customer's name and store in shopper_name
+            4. If shopper_name is empty or only whitespace:
+                5. raise ValueError
+            6. Else:
+                7. Break loop
+        8. If ValueError exception occurs:
+            9. Print 'You need to enter a name.'
+    10. Prompt for today's date and store in `shopper_date`
+    11. Print customer's name and today's date
+    12. Create `ShoppingCart` object `shopper` with `shopper_name`, `shopper_date`
+    13. Call `print_menu` with `shopper`
+
+If this script is executed directly:
+    1. Call the main function
