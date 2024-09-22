@@ -31,7 +31,8 @@ class Chin:
         print(f'\n########################################')
         print(f'Your Waterfall diagram')
         for i, name in enumerate(self.phases, 1):
-            print(f'  Phase {i}: {name['phase_name']}')
+            display_phase_name = name['phase_name']
+            print(f'  Phase {i}: {display_phase_name}')
             for j, task_name in enumerate(name['tasks'], 1):
                 print(f'    Tasks {j}: {task_name}')
         print(f'\n')
