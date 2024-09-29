@@ -22,12 +22,37 @@ class Prototype:
     else:
         print(f'\n')
 
-    # Display in sequence
-    print(f'Sequence of pages:')
+    # Display pages
+    print(f'Pages:')
     for item in range(len(pages)):
         print(f'    Page {item+1}: {pages[item]}')
     else:
         print(f'\n')
+    
+    # Enter sequence
+    print('Enter the sequence of the pages by entering the page number. Press "f" to finsh the sequence.')
+    finished = False
+    sequence = []
+    step = 1
+    while True:
+        try:
+            sequence_step = input(f'Enter page name of step {step}: ')
+            if sequence_step == 'f':
+                break 
+            elif not sequence_step in pages:
+                print('That is not an option.')
+            else:
+                sequence.append(sequence_step)
+                step += 1
+        except ValueError:
+            print('An error occured.')
+
+    print(f'\n########################################')
+    print(f'Sequence of the pages:')
+    for step in range(len(sequence)):
+        print(f'    Step {step+1}: {sequence[step]}')
+    else:
+        print(f'########################################\n')
 
 if __name__ == "__main__":
     Prototype()
