@@ -30,8 +30,7 @@ class Prototype:
         print(f'\n')
     
     # Enter sequence
-    print('Enter the sequence of the pages by entering the page number. Press "f" to finsh the sequence.')
-    finished = False
+    print('Enter the sequence of the pages by entering the page number. Enter "f" to finsh the sequence.')
     sequence = []
     step = 1
     while True:
