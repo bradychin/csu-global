@@ -30,7 +30,16 @@ class Prototype:
         print(f'\n')
     
     # Enter sequence
-    print('Enter the sequence of the pages by entering the page number. Enter "f" to finsh the sequence.')
+    print('''Enter the sequence of the pages by entering the page name. 
+Example: Landing page is "Page 1" and you click an element on the page that brings you to 
+         "Page 2". When you click a button on the app, it brings you back to "Page 1".
+         The corresponding sequence will be:
+            Step 1: Page 1
+            Step 2: Page 2
+            Step 3: Page 1
+          
+Enter "f" to finsh the sequence.
+          ''')
     sequence = []
     step = 1
     while True:
