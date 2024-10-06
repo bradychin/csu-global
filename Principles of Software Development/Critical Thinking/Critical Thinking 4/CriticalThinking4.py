@@ -2,6 +2,21 @@ import json
 import os
 os.system('cls' if os.name == 'nt' else 'clear')
 
+# Ensure that json files are in the same folder as this python script
+print('\nPlace " personalityTraits.json" and "importantSteps.json" in the same folder as this python script.')
+while True:
+        try: 
+            verify = input(f'\nAre the files in the same folder? \nPress "1" if they are.\nPress "f" to end program.\n>>> ')
+            if verify == '1':
+                os.system('cls' if os.name == 'nt' else 'clear')
+                break
+            elif verify == 'f':
+                exit()
+            else: 
+                raise ValueError 
+        except ValueError:
+            print(f'Place in same directory.\n')
+
 # Get current folder path (where script is located).
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
