@@ -27,6 +27,7 @@ for i, item in enumerate(personality_data):
 # Display important steps of the program.
 print(f'Important steps in the program:')
 for i, step in enumerate(important_steps_data):
-    print(f'Step {step['step']}: {step['description']}')
+    important_step_description = step['description']
+    print(f'Step {step['step']}: {important_step_description}')
 else: 
     print(f'\n')
