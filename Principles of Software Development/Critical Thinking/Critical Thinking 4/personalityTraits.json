@@ -1,16 +1,27 @@
 
 [
     {
-        "trait": "focus",
-        "description": "Very focused"
+        "trait": "Vision",
+        "description": [
+            "\nExcellent software developers have a vision of what they want achieve and ",
+            "what they need to accomplish their objectives. They are goal-oriented and are ",
+            "able to develop and innovate on new ideas and techniques that no one else has before."
+        ]
     },
     {
-        "trait": "confidence",
-        "description": "Very confident"
+        "trait": "Confidence",
+        "description": [
+            "\nExcellent software developers have a high level of confidence. They are able",
+            "to make challenging decisions and are able to operate under stressful situations."
+        ]
     },
     {
-        "trait": "invinsibility complex",
-        "description": "They believe that they can do anything."
+        "trait": "Knowledge",
+        "description": [
+            "\nExcellent software developers have complete knowledge in their field. There are many ",
+            "different approaches to the same solution in software development and having full knowledge ",
+            "of the development tools and technologies allow for the best outcome."
+        ]
     }
 ]
     

@@ -2,15 +2,27 @@
 [
     {
         "step": 1,
-        "description": "import json"
+        "description": "Import libraries."
     },
     {
         "step": 2,
-        "description": "load json"
+        "description": "Set current working directory."
     },
     {
         "step": 3,
-        "description": "display json"
+        "description": "Define json files."
+    },
+    {
+        "step": 4,
+        "description": "Open and read json files."
+    },
+    {
+        "step": 5,
+        "description": "Display personality traits."
+    },
+    {
+        "step": 6,
+        "description": "Display important steps of the program."
     }
 ]
     
