@@ -19,8 +19,10 @@ with open(important_steps) as file2:
 # Display personality traits.
 print(f'\nPersonality Traits:\n')
 for i, item in enumerate(personality_data):
-    print(f'Trait {i+1}: {item['trait']}')
-    print(f'Description: {''.join(item['description'])}\n')
+    trait = item['trait']
+    print(f'Trait {i+1}: {trait}')
+    description = ''.join(item['description'])
+    print(f'Description: {description}\n')
 
 # Display important steps of the program.
 print(f'Important steps in the program:')
