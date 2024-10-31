@@ -51,7 +51,6 @@ def atm_account(account_balance):
 def main():
     # Prompt user for PIN
     pin = input('Create your PIN: ')
-    # account_balance = int(input('Enter your account balance: $'))
     account_balance = validate_input('Enter your account balance: $')
 
     # Verify identity
