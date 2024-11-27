@@ -20,5 +20,5 @@ def fibonacci_number_dynamic(term_index):
         i += 1
     return current
 
-print(fibonacci_number_recursion(4))
+print(fibonacci_number_recursion(3))
 print(fibonacci_number_dynamic(4))
