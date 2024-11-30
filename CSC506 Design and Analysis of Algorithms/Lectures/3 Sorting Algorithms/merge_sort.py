@@ -1,4 +1,3 @@
-import math
 def merge(numbers, i, j, k):
     merged_size = k - i + 1
     merged_numbers = [0] * merged_size
