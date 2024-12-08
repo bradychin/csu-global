@@ -1,4 +1,4 @@
-from dijkstra import shortest_path
+from dijkstra import dijkstra
 
 test_graphs = [
     [
@@ -52,6 +52,6 @@ for graph, start, target in test_graphs:
     print(f'{"Test case " + str(test_case):-^40}')
     print(f'- Start: {start}')
     print(f'- Target: {'All nodes' if target=='' else target}\n')
-    shortest_path(graph, start, target)
+    dijkstra(graph, start, target)
     print('\n')
     test_case += 1
