@@ -1,4 +1,4 @@
-print('Run "dijkstra_test_input.py" to test this algorithm')
+# Run "dijkstra_test_input.py" to test this algorithm
 
 def dijkstra(graph, start, target=''):
     unvisited = list(graph)
