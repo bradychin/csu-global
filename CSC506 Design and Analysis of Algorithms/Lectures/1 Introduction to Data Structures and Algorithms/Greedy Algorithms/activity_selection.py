@@ -8,9 +8,9 @@ class Activity:
         self.end_time = datetime.time(hour=end_time)
 
     def conflicts_with(self, other_activity):
-        if self.end_time <= other_activity.start_time:
+        if self.end_time <= other_activity.start:
             return False # No conflict
-        elif self.start_time >= other_activity.end_time:
+        elif self.start_time >= other_activity.end:
             return False # No conflict
         else:
             return True # Conflict
@@ -50,4 +50,4 @@ activities = [ activity_1, activity_2, activity_3, activity_4,
 
 itinerary = activity_selector(activities)
 for activity in itinerary:
-    print(f'{activity.name}: Start: {activity.start_time} End: {activity.end_time}')
+    print(f'{activity.name}: Start: {activity.start} End: {activity.end}')
