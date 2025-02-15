@@ -1,41 +1,50 @@
-# 1. Import libraries
 import numpy as np
-import tensorflow as tf
-import matplotlib.pyplot as plt
 
-# 2. Input and Output data
-X = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])  # Input layer
-y = np.array([[0], [1], [1], [0]])  # Output layer
+# 1. Define input data (modify data if necessary)
+input_data = np.array([[1], [3], [5], [7]])
+target_data = np.array([[3], [5], [7], [9]])
 
-# 3. Create the model
-# use sequential to stack layers
-model = tf.keras.Sequential([
-    tf.keras.layers.Dense(8, activation='relu', input_shape=(2,)),  # Hidden layer with input shape
-    tf.keras.layers.Dense(1, activation='sigmoid')  # Output layer
-])
+# 2. Define weights and biases
+w1 = 2*np.random.rand(1,3)-1
+w2 = 2*np.random.rand(3,1)-1
 
-# 4. Compile the model
-model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+# Initialize biases to zeros
+b1 = np.zeros((1, 3))
+b2 = np.zeros((1, 1))
 
-# 5. Train the model (using all data for training)
-history = model.fit(X, y, epochs=5000, verbose=2)
+# Activation function
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
 
-# 6. Make predictions
-predictions = model.predict(X)
+epochs = 2000
+learning_rate = 0.01
 
-# 7. Print predictions
-print(f"Predictions: \n{predictions}")
+for epoch in range(epochs):
+    # 3. Feedforward pass
+    # Compute hidden layer
+    z1 = np.dot(input_data, w1) + b1
+    a1 = sigmoid(z1)
+    # output layer
+    y_pred = np.dot(a1,w2) + b2
 
-# 8. Plot the training loss values
-plt.plot(history.history['loss'])
-plt.title('Model Loss')
-plt.xlabel('Epoch')
-plt.ylabel('Loss')
-plt.show()
+    # 4. Calculate loss
+    loss = np.mean((target_data - y_pred) ** 2)
+    print(f'Epoch: {epoch+1} -> y_pred: {y_pred} Loss: {loss}')
 
-# 9. Plot the training accuracy values
-plt.plot(history.history['accuracy'])
-plt.title('Model Accuracy')
-plt.xlabel('Epoch')
-plt.ylabel('Accuracy')
-plt.show()
+    # 5. Backpropagation
+    # Output layer gradient
+    output_layer_error_term = y_pred - target_data
+
+    # Hidden layer gradient
+    hidden_layer_derivative = sigmoid(z1) * (1-sigmoid(z1))
+    hidden_layer_error_term = np.dot(output_layer_error_term, w2.T) * hidden_layer_derivative
+
+    # Update weights and biases
+    output_layer_gradient_weights = np.dot(a1.T, output_layer_error_term)
+    w2 = w2 - learning_rate * output_layer_gradient_weights
+    b2 = b2 - learning_rate * np.sum(output_layer_error_term)
+    hidden_layer_gradient_weights = np.dot(input_data.T, hidden_layer_error_term)
+    w1 = w1 - learning_rate * hidden_layer_gradient_weights
+    b1 = b1 - learning_rate * np.sum(hidden_layer_error_term)
+
+print(f'\n\nPredicted Values:\n{y_pred}')
