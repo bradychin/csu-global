@@ -1,0 +1,9 @@
+This script takes weather and wind data to determine if it will be safe for pilots to fly an airplane
+
+Instructions:
+1. Install the numpy, pandas, and sklearn libraries:
+        pip install numpy
+        pip install pandas
+        pip install sklearn
+2. Ensure that aviation_dataset.csv and naive_bayes_classifier.py are in the same folder
+3. Run script
