@@ -21,6 +21,12 @@ Repository for all CSU Global projects.
 
 - **CSC506: Design and Analysis of Algorithms**
   - Algorithm design, analysis, and complexity covering data structures, complexity analysis, and algorithmic problem-solving.
+
+- **CSC507: Foundations of Operating Systems**
+  - Operating system concepts, performance optimization, and parallelism
+
+- **CSC510: Foundations of Artificial Intelligence**
+  - Intelligent search methods, first-order logic, symbolic planning, and core machine learning concepts. 
 ---
 
 Feel free to explore the individual course folders for more details on specific assignments and projects.
