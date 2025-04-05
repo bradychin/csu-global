@@ -17,6 +17,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/CSC525 Principles of Machine Learning/Critical Thinking/Critical Thinking 3/Salary_Data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
       </map>
     </option>
   </component>
