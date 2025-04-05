@@ -1,8 +1,6 @@
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import PolynomialFeatures
-import matplotlib.pyplot as plt
 import pandas as pd
-import numpy as np
 
 salary_data = pd.read_csv('Salary_Data.csv')
 features = salary_data[['YearsExperience']]
