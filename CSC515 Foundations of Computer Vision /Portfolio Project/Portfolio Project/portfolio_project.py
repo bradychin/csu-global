@@ -2,8 +2,8 @@ import cv2
 import matplotlib.pyplot as plt
 
 # Load classifiers
-face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
-eye_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_eye.xml')
+face_classifier = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+eye_classifier = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_eye.xml')
 
 def preprocess_image(img):
     processed_image = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -13,22 +13,22 @@ def preprocess_image(img):
 
 
 def detect_faces(img, gray):
-    faces = face_cascade.detectMultiScale(gray,
-                                          scaleFactor=1.2,
-                                          minNeighbors=4,
-                                          minSize=(30,30))
+    faces = face_classifier.detectMultiScale(gray,
+                                             scaleFactor=1.2,
+                                             minNeighbors=4,
+                                             minSize=(30,30))
     for (x, y, w, h) in faces:
         cv2.rectangle(img, (x, y), (x + w, y + h), (0, 0, 255), 2)
     return faces
 
-def align_and_blur_eyes(img, face_coords):
-    for (x, y, w, h) in face_coords:
+def align_and_blur_eyes(img, face_coordinates):
+    for (x, y, w, h) in face_coordinates:
         face = img[y:y + h, x:x + w]
         gray_face = cv2.cvtColor(face, cv2.COLOR_BGR2GRAY)
-        eyes = eye_cascade.detectMultiScale(gray_face,
-                                            scaleFactor=1.03,
-                                            minNeighbors=1,
-                                            minSize=(10,10))
+        eyes = eye_classifier.detectMultiScale(gray_face,
+                                               scaleFactor=1.03,
+                                               minNeighbors=1,
+                                               minSize=(10,10))
         for (ex, ey, ew, eh) in eyes:
             eye_region = face[ey:ey + eh, ex:ex + ew]
             blurred = cv2.GaussianBlur(eye_region, (23, 23), 30)
