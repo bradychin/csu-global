@@ -1,13 +1,6 @@
-# Install dependencies if needed (uncomment on Colab)
-# !pip install seaborn tensorflow tensorflow-docs
-
 from __future__ import absolute_import, division, print_function, unicode_literals
-
 import matplotlib.pyplot as plt
-import numpy as np
 import pandas as pd
-import seaborn as sns
-
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
@@ -44,9 +37,7 @@ train_labels = train_dataset.pop('MPG')
 test_labels = test_dataset.pop('MPG')
 
 # Normalize data
-train_stats = train_dataset.describe()
-train_stats.pop("MPG")
-train_stats = train_stats.transpose()
+train_stats = train_dataset.describe().transpose()
 
 def norm(x):
     return (x - train_stats['mean']) / train_stats['std']
